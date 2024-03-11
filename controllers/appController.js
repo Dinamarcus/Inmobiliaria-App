@@ -10,9 +10,10 @@ const inicio = async (req, res) => {
 
   console.log(req);
 
-  const [categorias, precios, casas, departamentos] = await Promise.all([
-    Categoria.findAll({ raw: true }),
-    Precio.findAll({ raw: true }),
+  const categorias = await Categoria.findAll({ raw: true });
+  const precios = await Precio.findAll({ raw: true });
+
+  const [casas, departamentos] = await Promise.all([
     Propiedad.findAll({
       limit: 3,
       order: [["createdAt", "DESC"]],
