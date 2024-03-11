@@ -103,7 +103,6 @@ const guardar = async (req, res) => {
 
     res.render("propiedades/crear", {
       pagina: "Crear Propiedad",
-
       categorias,
       precios,
       errores: resultado.array(),

@@ -28,12 +28,13 @@ Dropzone.options.dropzoneId = {
   autoProcessQueue: false, // Auto upload,
   addRemoveLinks: false,
   init: function () {
-    const submitButton = document.querySelector("input[type='submit']");
+    const submitButton = document.querySelector("#submit-button");
     const deleteButton = document.querySelector("input[type='button']");
     const dropzoneId = this;
     let errorOccurred = false; // Flag to check if an error occurred
 
-    submitButton.addEventListener("click", function () {
+    submitButton.addEventListener("click", function (e) {
+      e.preventDefault();
       if (dropzoneId.getQueuedFiles().length > 0) {
         dropzoneId.processQueue();
       } else {

@@ -50,7 +50,7 @@ Router.get("/propiedades/agregar-imagen/:id", protegerRuta, agregarImagen);
 Router.post(
   "/propiedades/agregar-imagen/:id",
   protegerRuta,
-  upload.single("imagen"), // single() es un middleware de multer que se encarga de subir un solo archivo. El nombre del campo debe ser el mismo en el,\
+  upload.single("imagen"), // single() es un middleware de multer que se encarga de subir un solo archivo. El nombre del campo debe ser el mismo en el
   almacenarImagen
 );
 

@@ -6,7 +6,7 @@ block styles
 
 block content
     div.py-10
-        a(href="/auth/login")
+        a
             h1(class="hover:cursor-pointer").text-4xl.my-10.font-extrabold.text-center Bienes
                 span.font-normal Raices
         h2.text-center.font-bold.text-2xl #{pagina}
@@ -18,7 +18,7 @@ block content
                 input(type="hidden", name="_csrf", value=csrfToken) 
             
             div(class="grid space-y-2 md:space-y-0 md:flex md:justify-evenly items-center mt-2")
-                input(class="bg-gray-600 w-full md:w-60  p-2 text-white uppercase hover:bg-gray-700 cursor-pointer rounded-md hover:transition-colors duration-300 ease font-semibold", type="submit", value="Agregar Imagen")
+                input(class="bg-gray-600 w-full md:w-60  p-2 text-white uppercase hover:bg-gray-700 cursor-pointer rounded-md hover:transition-colors duration-300 ease font-semibold", type="submit",id="submit-button" value="Agregar Imagen")
                 input(class="bg-red-600  w-full md:w-60 p-2 text-white uppercase hover:bg-red-700 cursor-pointer rounded-md hover:transition-colors duration-300 ease font-semibold", type="button", value="Eliminar Imagen")
 
 block scripts
