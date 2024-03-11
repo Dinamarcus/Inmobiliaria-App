@@ -16,7 +16,7 @@ const admin = async (req, res) => {
   // Leer queryString
   const { page: actualPage } = req.query;
 
-  const expresion = /^[0-9]$/; // Expresion regular para validar que el valor sea un numero. Si no es un numero, redirigir a la pagina 1.
+  const expresion = /^[0-9]+$/; // Regular expression to validate that the value is a number
 
   if (!expresion.test(actualPage)) {
     res.redirect("/mis-propiedades?page=1");
@@ -26,7 +26,8 @@ const admin = async (req, res) => {
     const { id } = req.usuario;
 
     const limit = 10;
-    const offset = actualPage * limit - limit;
+    const actualPageNumber = parseInt(actualPage, 10);
+    const offset = actualPageNumber * limit - limit;
 
     const [propiedades, total] = await Promise.all([
       Propiedad.findAll({
@@ -62,7 +63,7 @@ const admin = async (req, res) => {
       pagina: "Mis Propiedades",
       csrfToken: req.csrfToken(),
       paginas: Math.ceil(total / limit),
-      actualPage: Number(actualPage),
+      actualPage: actualPageNumber,
       total,
       offset,
       limit,
