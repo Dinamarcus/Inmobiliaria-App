@@ -1,0 +1,12 @@
+header.bg-indigo-600.p-4 
+    div(class="md:justify-between md:flex-row flex-col flex container mx-auto items-center")
+        a(href="/") 
+            h1(class="grid sm:flex text-2xl text-white font-extrabold text-center") Bienes
+                span.font-normal Raices
+
+        nav(class="flex-col md:flex-row gap-3 text-sm flex md:items-center md:gap-4 font-bold text-white text-center")
+            a(href="/mis-propiedades") Mis Propiedades
+            a(href=`/editar-perfil/${userId}`) Mi Perfil
+            form(action="/auth/logout" method="POST") 
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" class="bg-indigo-800 py-2 px-9 rounded-lg transition-transform duration-300 ease hover:scale-90 cursor-pointer" value="Cerrar Sesion") 

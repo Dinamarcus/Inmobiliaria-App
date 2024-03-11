@@ -1,0 +1,38 @@
+header.bg-indigo-600.p-2
+    div(class="md:justify-between md:flex-row flex-col flex container mx-auto items-center")
+        a(href="/") 
+            h1(class="grid sm:flex text-2xl text-white font-extrabold text-center") Bienes
+                span.font-normal Raices
+
+        nav(class="flex-col md:flex-row my-3 gap-3 text-sm flex md:items-center md:gap-4 font-bold text-white text-center")
+            a(href="/auth/registro") Crear Cuenta
+            a(href="/auth/login") Iniciar Sesion
+
+div(class="bg-indigo-700 md:block")
+    div(class="flex items-center justify-center md:hidden")
+        button(class="menu-buton relative group")
+            .relative.flex.overflow-hidden.items-center.justify-center.rounded-full.transform.transition-all.bg-slate-700.ring-0.ring-gray-300.ring-opacity-30.duration-200.shadow-md(class='w-[50px] h-[50px] ')
+                .flex.flex-col.justify-between.transform.transition-all.duration-300.origin-center.overflow-hidden(class='w-[20px] h-[20px]')
+                    .bg-white.w-7.transform.transition-all.duration-300.origin-left.delay-100(class='h-[2px] group-focus:translate-y-6')
+                    .bg-white.w-7.rounded.transform.transition-all.duration-300.delay-75(class='h-[2px] group-focus:translate-y-6')
+                    .bg-white.w-7.transform.transition-all.duration-300.origin-left(class='h-[2px] group-focus:translate-y-6')
+                    .absolute.items-center.justify-between.transform.transition-all.duration-500.-translate-x-10.flex.w-0(class='top-2.5 group-focus:translate-x-0 group-focus:w-12')
+                        .absolute.bg-white.w-5.transform.transition-all.duration-500.rotate-0.delay-300(class='h-[2px] group-focus:rotate-45')
+                        .absolute.bg-white.w-5.transform.transition-all.duration-500.-rotate-0.delay-300(class='h-[2px] group-focus:-rotate-45')
+
+    div(class="menu hidden container mx-auto md:flex md:justify-between items-center p-2 gap-3")
+            nav(class="menu-nav grid text-center items-center md:flex pointer-events-none md:pointer-events-auto")
+                a(href="/categorias/1" class=`menu-item text-sm font-bold item uppercase text-white hover:scale-90 hover:bg-indigo-800 transition duration-300 ease py-3 px-5 ${id == "1" ? "bg-indigo-800 scale-90" : ""} opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0`) Casas
+                a(href="/categorias/2" class=`menu-item text-sm font-bold item uppercase text-white hover:scale-90 hover:bg-indigo-800 transition duration-300 ease py-3 px-5 ${id == "2" ? "bg-indigo-800 scale-90" : ""} opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0`) Departamentos
+                a(href="/categorias/3" class=`menu-item text-sm font-bold item uppercase text-white hover:scale-90 hover:bg-indigo-800 transition duration-300 ease py-3 px-5 ${id == "3" ? "bg-indigo-800 scale-90" : ""} opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0`) Locales
+                a(href="/categorias/4" class=`menu-item text-sm font-bold item uppercase text-white hover:scale-90 hover:bg-indigo-800 transition duration-300 ease py-3 px-5 ${id == "4" ? "bg-indigo-800 scale-90" : ""} opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0`) Terrenos
+                a(href="/categorias/5" class=`menu-item text-sm font-bold item uppercase text-white hover:scale-90 hover:bg-indigo-800 transition duration-300 ease py-3 px-5 ${id == "5" ? "bg-indigo-800 scale-90" : ""} opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0`) Cabañas
+            
+            form(class="menu-search opacity-0 md:opacity-100 item gap-3 items-center flex flex-col md:flex-row transition duration-300 ease" action="/buscador" method="POST")
+                input(type="hidden", name="_csrf", value=csrfToken)
+                label(for="termino" class="hidden lg:block text-sm uppercase font-bold text-white") Buscar
+                input(type="text" id="termino" name="termino" class="menu-search__bar w-5/6 p-2 rounded-lg shadow text-sm transition duration-300 ease opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0" placeholder="Buscar Propiedades")
+                input(type="submit", value="buscar", class="menu-search__but bg-indigo-800 hover:bg-indigo-400 rounded-lg text-white uppercase font-bold p-2 cursor-pointer text-sm transition duration-300 ease opacity-0 md:opacity-100 -translate-y-24 md:translate-y-0")
+
+script(src="/js/hamburMenu.js")
+

@@ -1,0 +1,25 @@
+extends ../layout/admin
+
+block content
+    div
+        a(href="/mis-propiedades")
+            h1(class="hover:cursor-pointer").text-4xl.my-10.font-extrabold.text-center Bienes
+                span.font-normal Raices
+        h2.text-center.font-bold.text-2xl #{pagina}
+    
+    div(class="bg-white shadow-md rounded px-4 py-5 mx-auto container max-w-3xl md:px-10 mt-5")
+        form(class="", method="POST")
+            input(type="hidden", name="_csrf", value=csrfToken) 
+            div(class="space-y-3")
+                h3(class="text-lg leading-6 font-medium text-gray-900 text-center") Informacion General
+                p.text-gray-600 Edita la informacion sobre tu perfil
+                div 
+                    label.block.text-sm.uppmercase.text-gray-600.mb-2.font-bold.uppercase(for="nombre") Nombre 
+                    input#nombre.w-full.py-2.px-3.border.border-gray-300.rounded-md.placeholder-gray-400(type='text', name='nombre', value=user.nombre ? user.nombre : "", placeholder="Tu nombre")  
+                div 
+                    label.block.text-sm.uppmercase.text-gray-600.mb-2.font-bold.uppercase(for="email") Email 
+                    input(type='text', name='email', value=user.email ? user.email : "", placeholder="Tu email")#email.w-full.py-2.px-3.border.border-gray-300.rounded-md.placeholder-gray-400
+        
+                input(class="bg-gray-600 w-full mt-5 p-2 text-white uppercase hover:bg-gray-700 cursor-pointer rounded-md hover:transition-colors duration-300 ease font-semibold" type="submit", value="Guardar Cambios")
+                    
+

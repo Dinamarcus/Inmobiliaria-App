@@ -1,0 +1,27 @@
+extends ../layout/index
+
+block content
+    div.py-10
+        a(href="/auth/login")
+            h1(class="hover:cursor-pointer").text-4xl.my-10.font-extrabold.text-center Bienes
+                span.font-normal Raices
+        h2.text-center.font-bold.text-2xl #{pagina}
+
+        if errores 
+            each error in errores
+                div.bg-red-100.border-l-4.border-red-500.text-red-700.p-3.text-sm.my-3.rounded-md.max-w-md.mx-auto.text-center
+                    p #{error.msg}
+
+        div.mt-8.mx-auto.max-w-md
+            div.bg-white.py-8.px-4.shadow.rounded-lg
+                form(method="POST" action="/auth/olvide").space-y-5
+                    input(type='hidden', name='_csrf', value= csrfToken)
+                    div 
+                        label.block.text-sm.uppmercase.text-gray-600.mb-2.font-bold(for="email") Email de Registro
+                        input#email.w-full.py-2.px-3.border.border-gray-300.rounded-md.placeholder-gray-400(type='text', placeholder='Tu Email', name='email')   
+
+                    div(class="flex items-center justify-between")
+                        a(href="/auth/login" class="text-gray-500 text-xs hover:underline") Ya tienes cuenta? Inicia Sesión
+                        a(href="/auth/registro" class="text-gray-500 text-xs hover:underline") No tienes cuenta? Crea una
+
+                    input(type='submit', value='Enviar Instrucciones', class='bg-indigo-500 w-full py-2 text-white uppercase font-bold rounded-md cursor-pointer hover:bg-indigo-800 transition-duration-400 ease transition-colors')
