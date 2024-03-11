@@ -15,7 +15,7 @@ const db = new Sequelize(
       timestamps: true, // para que cree las columnas de created_at y updated_at
     },
     pool: {
-      max: 5, // maximo de conexiones
+      max: 20, // maximo de conexiones
       min: 0, // minimo de conexiones
       acquire: 30000, // tiempo maximo de espera para una conexion en milisegundos
       idle: 10000, // tiempo maximo de inactividad de una conexion en milisegundos
