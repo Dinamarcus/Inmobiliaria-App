@@ -25,11 +25,8 @@ const admin = async (req, res) => {
     const { id } = req.usuario;
 
     const limit = 10;
-    let actualPageNumber = parseInt(actualPage, 10);
-    if (isNaN(actualPageNumber)) {
-      actualPageNumber = 1; // default page number
-    }
-    const offset = (actualPageNumber - 1) * limit;
+    const actualPageNumber = parseInt(actualPage, 10);
+    const offset = actualPageNumber * limit - limit;
 
     const [propiedades, total] = await Promise.all([
       Propiedad.findAll({
