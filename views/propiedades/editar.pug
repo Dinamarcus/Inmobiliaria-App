@@ -26,7 +26,7 @@ block content
                         input#titulo.w-full.py-2.px-3.border.border-gray-300.rounded-md.placeholder-gray-400(type='text', placeholder='Titulo Propiedad, ej: Casa en la Playa, ...', name='titulo', value=datos.titulo ? datos.titulo : "" )  
                     div 
                         label.block.text-sm.uppmercase.text-gray-600.mb-2.font-bold.uppercase(for="descripcion") Descripcion
-                        textarea#descripcion.w-full.py-2.px-3.border.border-gray-300.rounded-md(placeholder="Descripcion de la propiedad.." name='descripcion' class="placeholder-gray-400") #{datos.titulo ? datos.titulo : ""}
+                        textarea#descripcion.w-full.py-2.px-3.border.border-gray-300.rounded-md(placeholder="Descripcion de la propiedad.." name='descripcion' class="placeholder-gray-400") #{datos.descripcion ? datos.descripcion : ""}
                     div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
                         div(class="md:w-1/2")
                             label.block.text-sm.uppmercase.text-gray-600.mb-2.font-bold.uppercase(for="categoria") Categoria
