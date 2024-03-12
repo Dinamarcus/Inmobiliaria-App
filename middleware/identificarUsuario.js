@@ -7,6 +7,7 @@ const identificarUsuario = async (req, res, next) => {
   console.log(_token, "TOKEN");
 
   if (!_token) {
+    console.log("NO HAY TOKEN");
     req.usuario = null;
 
     return next();

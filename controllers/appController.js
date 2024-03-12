@@ -5,10 +5,11 @@ import bcrypt from "bcrypt";
 import { Precio, Categoria, Propiedad, Usuario } from "../models/index.js";
 
 const inicio = async (req, res) => {
-  const { _token: token } = req.cookies;
-  const authenticated = token ? true : false;
+  let authenticated = true;
 
-  console.log(req);
+  if (!req.usuario) {
+    authenticated = false;
+  }
 
   const categorias = await Categoria.findAll({ raw: true });
   const precios = await Precio.findAll({ raw: true });
@@ -19,6 +20,7 @@ const inicio = async (req, res) => {
       order: [["createdAt", "DESC"]],
       where: {
         categoriaId: 1,
+        publicado: 1,
       },
       include: [
         {
@@ -32,6 +34,7 @@ const inicio = async (req, res) => {
       order: [["createdAt", "DESC"]],
       where: {
         categoriaId: 2,
+        publicado: 1,
       },
       include: [
         {
@@ -67,6 +70,7 @@ const categoria = async (req, res) => {
   const propiedades = await Propiedad.findAll({
     where: {
       categoriaId: id,
+      publicado: 1,
     },
     include: [
       {
@@ -85,7 +89,14 @@ const categoria = async (req, res) => {
 };
 
 const noEncontrado = async (req, res) => {
+  let authenticated = true;
+
+  if (!req.usuario) {
+    authenticated = false;
+  }
+
   res.render("404", {
+    authenticated,
     pagina: "Pagina no encontrada",
     csrfToken: req.csrfToken(),
   });
@@ -102,6 +113,7 @@ const buscador = async (req, res) => {
   // Consultar las propiedades
   const propiedades = await Propiedad.findAll({
     where: {
+      publicado: 1,
       titulo: {
         [Sequelize.Op.like]: "%" + termino + "%", // Buscar por titulo
       },

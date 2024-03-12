@@ -370,9 +370,11 @@ const cambiarEstado = async (req, res) => {
 //Muestra una propiedad
 const mostrarPropiedad = async (req, res) => {
   const { id } = req.params;
+  let authenticated = true;
 
-  const token = req.cookies._token;
-  const authenticated = token ? true : false;
+  if (!req.usuario) {
+    authenticated = false;
+  }
 
   //Comprobar que la propiedad existe
   const propiedad = await Propiedad.findByPk(id, {
@@ -398,7 +400,6 @@ const mostrarPropiedad = async (req, res) => {
     csrfToken: req.csrfToken(),
     usuario: req.usuario,
     esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioId),
-    userId: hashBase64(req.usuario.id.toString()),
     authenticated,
   });
 };
