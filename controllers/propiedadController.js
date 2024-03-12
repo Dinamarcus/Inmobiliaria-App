@@ -1,6 +1,5 @@
-import { unlink } from "node:fs/promises"; // Para eliminar archivos del disco duro
-import { Buffer } from "node:buffer";
-import bcrypt from "bcrypt";
+import path from "node:path"; // Para trabajar con rutas de archivos
+import FirebaseAdmin from "firebase-admin";
 import { validationResult } from "express-validator"; // Para acceder al resultado de la validacion definida en el routing
 import {
   Propiedad,
@@ -202,14 +201,39 @@ const almacenarImagen = async (req, res, next) => {
   }
 
   try {
-    propiedad.imagen = req.file.filename;
-    propiedad.publicado = 1;
+    // Subir la imagen a Firebase
+    const { buffer, originalname } = req.file;
+    const bucket = FirebaseAdmin.storage().bucket();
+    const blob = bucket.file(originalname);
+    const blobStream = blob.createWriteStream({
+      metadata: {
+        contentType: req.file.mimetype,
+      },
+    });
 
-    await propiedad.save();
+    blobStream.on("error", (err) => {
+      console.error(err);
+      next(err);
+    });
 
-    res.redirect("/mis-propiedades");
+    blobStream.on("finish", async () => {
+      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${
+        bucket.name
+      }/o/${encodeURI(blob.name)}?alt=media`;
+
+      // Guardar la URL de la imagen en la base de datos
+      propiedad.imagen = publicUrl;
+      propiedad.publicado = 1;
+
+      await propiedad.save();
+
+      res.redirect("/mis-propiedades");
+    });
+
+    blobStream.end(buffer);
   } catch (error) {
     console.log(error);
+    next(error);
   }
 };
 
@@ -334,13 +358,22 @@ const eliminarPropiedad = async (req, res) => {
     res.redirect("/mis-propiedades");
   }
 
-  await Promise.allSettled([
-    unlink(`public/img/${propiedad.imagen}`),
-    propiedad.destroy(),
-  ]).then(() => {
-    console.log("Propiedad eliminada");
+  try {
+    if (propiedad.imagen) {
+      // Eliminar la imagen de Firebase Storage
+      const bucket = FirebaseAdmin.storage().bucket();
+      const imageUrl = new URL(propiedad.imagen);
+      const fileName = path.basename(imageUrl.pathname); // obtener el nombre del archivo de la URL
+      await bucket.file(fileName).delete();
+    }
+
+    // Eliminar la propiedad de la base de datos
+    await propiedad.destroy();
+
     res.redirect("/mis-propiedades");
-  });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Cambiar estado de la propiedad

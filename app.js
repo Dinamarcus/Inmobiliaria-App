@@ -1,11 +1,19 @@
 import Express from "express";
 import csurf from "csurf";
 import cookieParser from "cookie-parser";
+import FirebaseAdmin from "firebase-admin";
+import serviceAccount from "./config/ServiceAccountKey.json" assert { type: "json" }; // assert { type: "json" } is a JSON assertion
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import propioedadesRoutes from "./routes/propiedadesRoutes.js";
 import appRoutes from "./routes/appRoutes.js";
 import apiRoutes from "./routes/apiRoutes.js";
 import db from "./config/db.js";
+
+// Initialize Firebase
+FirebaseAdmin.initializeApp({
+  credential: FirebaseAdmin.credential.cert(serviceAccount),
+  storageBucket: "gs://inmobiliaria-b08c4.appspot.com", // replace with your Firebase Storage bucket URL
+});
 
 // Crear la app
 const app = Express();
