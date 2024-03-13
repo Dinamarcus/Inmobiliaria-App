@@ -85,7 +85,7 @@ const categoria = async (req, res) => {
   res.render("categoria", {
     pagina: `Categoria ${categoria.nombre}`,
     propiedades,
-    userId: hashBase64(req.usuario.id.toString()),
+    userId: hashBase64(req?.usuario?.id.toString()),
     id,
     csrfToken: req.csrfToken(),
   });
@@ -101,7 +101,7 @@ const noEncontrado = async (req, res) => {
   res.render("404", {
     authenticated,
     pagina: "Pagina no encontrada",
-    userId: hashBase64(req.usuario.id.toString()),
+    userId: hashBase64(req?.usuario?.id.toString()),
     csrfToken: req.csrfToken(),
   });
 };
@@ -133,7 +133,7 @@ const buscador = async (req, res) => {
   res.render("busqueda", {
     pagina: `Resultados para ${termino}`,
     propiedades,
-    userId: hashBase64(req.usuario.id.toString()),
+    userId: hashBase64(req?.usuario?.id.toString()),
     csrfToken: req.csrfToken(),
   });
 };
