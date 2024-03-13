@@ -1,6 +1,8 @@
 import path from "node:path"; // Para trabajar con rutas de archivos
 import FirebaseAdmin from "firebase-admin";
 import { validationResult } from "express-validator"; // Para acceder al resultado de la validacion definida en el routing
+import { generarId } from "../helpers/generarToken.js";
+
 import {
   Propiedad,
   Categoria,
@@ -203,8 +205,11 @@ const almacenarImagen = async (req, res, next) => {
   try {
     // Subir la imagen a Firebase
     const { buffer, originalname } = req.file;
+
+    const newFilename = generarId() + path.extname(originalname);
+
     const bucket = FirebaseAdmin.storage().bucket();
-    const blob = bucket.file(originalname);
+    const blob = bucket.file(newFilename);
     const blobStream = blob.createWriteStream({
       metadata: {
         contentType: req.file.mimetype,

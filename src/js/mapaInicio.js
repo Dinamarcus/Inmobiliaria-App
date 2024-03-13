@@ -50,6 +50,7 @@
 
   const mostrarPropiedades = (propiedades) => {
     console.log(propiedades);
+
     // Limpiar los markers
     markers.clearLayers();
 

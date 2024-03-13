@@ -6,7 +6,7 @@ const propiedades = async (req, res) => {
     include: [{ model: Categoria, as: "categoria" }],
   });
 
-  res.json(propiedades);
+  return res.json(propiedades);
 };
 
 export { propiedades };
