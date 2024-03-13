@@ -3,6 +3,7 @@ import { Buffer } from "node:buffer";
 import { validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 import { Precio, Categoria, Propiedad, Usuario } from "../models/index.js";
+import hashBase64 from "../helpers/hashBase64.js";
 
 const inicio = async (req, res) => {
   let authenticated = true;
@@ -50,6 +51,7 @@ const inicio = async (req, res) => {
     categorias,
     precios,
     casas,
+    userId: hashBase64(req?.usuario?.id.toString()),
     departamentos,
     authenticated,
     csrfToken: req.csrfToken(),
@@ -83,6 +85,7 @@ const categoria = async (req, res) => {
   res.render("categoria", {
     pagina: `Categoria ${categoria.nombre}`,
     propiedades,
+    userId: hashBase64(req.usuario.id.toString()),
     id,
     csrfToken: req.csrfToken(),
   });
@@ -98,6 +101,7 @@ const noEncontrado = async (req, res) => {
   res.render("404", {
     authenticated,
     pagina: "Pagina no encontrada",
+    userId: hashBase64(req.usuario.id.toString()),
     csrfToken: req.csrfToken(),
   });
 };
@@ -129,6 +133,7 @@ const buscador = async (req, res) => {
   res.render("busqueda", {
     pagina: `Resultados para ${termino}`,
     propiedades,
+    userId: hashBase64(req.usuario.id.toString()),
     csrfToken: req.csrfToken(),
   });
 };
@@ -157,6 +162,7 @@ const editarPerfil = async (req, res) => {
     pagina: "Editar perfil",
     csrfToken: req.csrfToken(),
     user: user[0],
+    userId: id,
   });
 };
 
