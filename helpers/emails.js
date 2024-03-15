@@ -32,9 +32,9 @@ const emailRegistro = async (datos) => {
         <div style="padding: 20px;">
             <h1 style="color: #333333;">Hola ${nombre}!</h1>
             <p style="color: #777777;">Sólo falta un paso para confirmar tu cuenta. Presiona el siguiente enlace:</p>
-            <a href="${process.env.BACKEND_URL}:${
-      process.env.PORT ?? 4000
-    }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Confirmar cuenta</a>
+            <a href="${
+              process.env.BACKEND_URL
+            }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Confirmar cuenta</a>
             <p style="color: #777777;">Si no realizaste esta petición, ignora este mensaje</p>
         </div>
 
