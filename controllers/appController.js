@@ -176,16 +176,16 @@ const guardarCambios = async (req, res) => {
   });
   const areSame = await bcrypt.compare(oldPass, passHashed.password);
 
-  if (!areSame) {
-    resultado.errors.push({
-      value: oldPass,
-      msg: "La contraseña actual es incorrecta",
-      param: "passwordOld",
-      location: "body",
-    });
-  }
-
   if (oldPass !== "" && newPass === "") {
+    if (!areSame) {
+      resultado.errors.push({
+        value: oldPass,
+        msg: "La contraseña actual es incorrecta",
+        param: "passwordOld",
+        location: "body",
+      });
+    }
+
     resultado.errors.push({
       value: "",
       msg: "El campo de nueva contraseña no puede estar vacio",
