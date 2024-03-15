@@ -43,14 +43,10 @@
       propiedades = await req.json();
 
       mostrarPropiedades(propiedades);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const mostrarPropiedades = (propiedades) => {
-    console.log(propiedades);
-
     // Limpiar los markers
     markers.clearLayers();
 

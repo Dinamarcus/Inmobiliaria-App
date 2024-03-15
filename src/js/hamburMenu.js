@@ -1,5 +1,5 @@
 (function () {
-  const button = document.querySelector(".menu-buton");
+  const button = document.querySelector(".menu-button");
 
   button.addEventListener("click", () => {
     const nav = document.querySelector(".menu-nav");

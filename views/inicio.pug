@@ -2,135 +2,130 @@ extends ./layout/app
 
 block styles
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+    link(rel="stylesheet" href="/css/swiper.css")
 
 block content  
     div(class="py-5")
         h1(class="text-center text-4xl font-extrabold") Ubicacion en el Mapa
 
-        div(class="flex flex-col md:flex-row items-center py-10 gap-4")
-            h2(class="text-sm uppercase text-gray-800 font-bold") Filtrar Propiedades 
+        div(class="px-3")
+            div(class="flex flex-col md:flex-row items-center py-4 gap-4 justify-center")
+                h2(class="text-sm uppercase text-gray-800 font-bold") Filtrar Propiedades 
 
-            div(class="w-full md:w-auto flex items-center gap-2")
-                label(class="text-sm w-24 uppercase text-gray-500 font-bold", for="categorias") Categorias
-                select(id="categorias" class="bg-white flex-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow")
-                    option(value="") -- Seleccione --
-                    each categoria in categorias
-                        option(value=categoria.id) #{categoria.nombre}
+                div(class="w-full md:w-auto flex items-center gap-2")
+                    label(class="text-sm w-24 uppercase text-gray-500 font-bold", for="categorias") Categorias
+                    select(id="categorias" class="bg-white flex-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow")
+                        option(value="") -- Seleccione --
+                        each categoria in categorias
+                            option(value=categoria.id) #{categoria.nombre}
 
-            div(class="w-full md:w-auto flex items-center gap-2")
-                label(class="text-sm w-24 uppercase text-gray-500 font-bold", for="precios") Precios
-                select(id="precios" class="bg-white flex-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow")
-                    option(value="") -- Seleccione --
-                    each precio in precios
-                        option(value=precio.id) #{precio.nombre}
+                div(class="w-full md:w-auto flex items-center gap-2")
+                    label(class="text-sm w-24 uppercase text-gray-500 font-bold", for="precios") Precios
+                    select(id="precios" class="bg-white flex-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow")
+                        option(value="") -- Seleccione --
+                        each precio in precios
+                            option(value=precio.id) #{precio.nombre}
 
-        div(id="mapa-inicio" class="h-[600px] rounded-md mt-5")
+            div(id="mapa-inicio" class="h-[600px] rounded-md mt-3 mx-3")
 
         section(id="about-us" class="py-5")
-            div(class="container mx-auto flex flex-col items-center gap-4")
+            div(class="container mx-auto  flex flex-col items-center gap-4")
                 h2(class="text-center text-4xl font-extrabold mt-8") Acerca de Nosotros
 
-                div(class="grid grid-cols-1 md:grid-cols-3 gap-20")
+                div(class="rounded-md bg-white mx-7 sm:mx-auto card-shadow grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20 p-5")
                     div
                         div(class="text-center")
                             h3(class="text-xl font-bold mt-2") Quienes somos
-                            p(class="mt-2") Somos una empresa inmobiliaria líder con años de experiencia en el mercado. Nos especializamos en la venta, alquiler y administración de propiedades residenciales y comerciales. Nuestro equipo de profesionales altamente capacitados está dedicado a brindar un servicio excepcional y personalizado a cada uno de nuestros clientes. Nos enorgullece nuestra reputación de integridad, transparencia y resultados excepcionales. Nuestra misión es ayudarte a encontrar la propiedad perfecta que se adapte a tus necesidades y presupuesto.
-                        div(class="mt-4 flex justify-center items-center")
-                            <i class="fa-solid fa-handshake-angle fa-5x"></i>
+                            p(class="mt-2") Somos una empresa inmobiliaria líder con años de experiencia en el mercado. Nos especializamos en la venta, alquiler y administración de propiedades residenciales y comerciales. Nuestro equipo de profesionales altamente capacitados está dedicado a brindar un servicio excepcional y personalizado.
+                        div(class="mt-4 flex justify-center items-center ")
+                            i(class="fa-solid fa-handshake-angle fa-5x", style="color: #f59e0b;")
 
                     div
                         div(class="text-center")
                             h3(class="text-xl font-bold mt-2") Donde nos encontramos
                             p(class="mt-2") Nos encontramos en el corazón de Buenos Aires, la vibrante capital de Argentina. Nuestra oficina está convenientemente ubicada para servir a toda la ciudad y a las áreas circundantes. Te invitamos a visitarnos para discutir tus necesidades inmobiliarias.
                         div(class="mt-4 flex justify-center items-center")
-                            <i class="fa-solid fa-location-dot fa-5x"></i>
+                            i(class="fa-solid fa-location-dot fa-5x", style="color: #f59e0b;")
 
                     div
                         div(class="text-center")
                             h3(class="text-xl font-bold mt-2") Horarios de atención
                             p(class="mt-2") Estamos abiertos de lunes a viernes de 9:00 a 18:00 y los sábados de 10:00 a 14:00. Nos esforzamos por estar disponibles para nuestros clientes y ofrecer flexibilidad en nuestras citas. Si necesitas visitarnos fuera de estos horarios, por favor contáctanos para programar una cita.         
                         div(class="mt-4 flex justify-center items-center")
-                            <i class="fa-regular fa-clock fa-5x"></i>
+                            i(class="fa-regular fa-clock fa-5x", style="color: #f59e0b;")
+
         section(id="our-team" class="py-5")
             div(class="container mx-auto px-4")
                 h2(class="text-center text-4xl font-extrabold pt-10") Nuestro Equipo
+        
+            div(class="swiper mySwiper")
+                div(class="swiper-wrapper")
+                    div(class="swiper-slide")
+                        img(src="/img/integrante1.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Christian Bale
+                            p(class="font-medium") Abogado & Asesor Inmobiliario
+                            
 
-                div(class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10")
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante1.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide")
+                        img(src="/img/integrante2.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Patrick Bateman
+                            p(class="font-medium") Agente Inmobiliario
+                            
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante2.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante3.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Leonardo DiCaprio
+                            p(class="font-medium") Contador
+                            
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante3.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide")
+                        img(src="/img/integrante4.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Salma Hayek
+                            p(class="font-medium") Diseñadora de Interiores
+                           
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante4.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante5.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Sofia Lopez
+                            p(class="font-medium") Fotografa
+                            
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante5.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante6.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Ana De Armas
+                            p(class="font-medium") Relaciones Públicas
+                            
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante6.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante7.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Nicole Kidman
+                            p(class="font-medium") Gerente de Ventas
+                            
 
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante7.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante8.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Tom Cruise
+                            p(class="font-medium") Gerente de Marketing
+                            
 
-                    div(class=" shad shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante8.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
-
-                    div(class="shadow-md p-4 bg-white rounded-md text-center mx-auto flex flex-col items-center hover:scale-90 transition duration-500 ease-in-out")
-                        div
-                            img(src="/img/integrante9.avif" alt="Miembro del equipo" class="w-10 h-80 object-fill")
-                        div(class="")
-                            h3(class="text-xl font-bold mt-2") Nombre del Miembro
-                            p Rol del Miembro
-                            p Breve descripción del miembro del equipo...
+                    div(class="swiper-slide ")
+                        img(src="/img/integrante9.avif" alt="Miembro del equipo" class="")
+                        div(class="my-auto")
+                            h3(class="text-xl font-bold") Ryan Gosling
+                            p(class="font-medium") Agente Inmobiliario
+                            
+                div(class="swiper-button-next")
+                div(class="swiper-button-prev")        
                          
-
-
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
-    <script src="https://kit.fontawesome.com/8fe8329aac.js" crossorigin="anonymous"></script>
     script(src="/js/mapaInicio.js")
+    script(src="/js/swiper.js")

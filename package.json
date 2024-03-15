@@ -40,6 +40,7 @@
     "nodemailer": "^6.9.9",
     "pug": "^3.0.2",
     "sequelize": "^6.37.1",
-    "sweetalert2": "^11.10.5"
+    "sweetalert2": "^11.10.5",
+    "swiper": "^11.0.7"
   }
 }

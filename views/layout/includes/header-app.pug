@@ -10,15 +10,7 @@ header.bg-indigo-600.p-2
 
 div(class="bg-indigo-700 md:block")
     div(class="flex items-center justify-center md:hidden")
-        button(class="menu-buton relative group")
-            .relative.flex.overflow-hidden.items-center.justify-center.rounded-full.transform.transition-all.bg-slate-700.ring-0.ring-gray-300.ring-opacity-30.duration-200.shadow-md(class='w-[50px] h-[50px] ')
-                .flex.flex-col.justify-between.transform.transition-all.duration-300.origin-center.overflow-hidden(class='w-[20px] h-[20px]')
-                    .bg-white.w-7.transform.transition-all.duration-300.origin-left.delay-100(class='h-[2px] group-focus:translate-y-6')
-                    .bg-white.w-7.rounded.transform.transition-all.duration-300.delay-75(class='h-[2px] group-focus:translate-y-6')
-                    .bg-white.w-7.transform.transition-all.duration-300.origin-left(class='h-[2px] group-focus:translate-y-6')
-                    .absolute.items-center.justify-between.transform.transition-all.duration-500.-translate-x-10.flex.w-0(class='top-2.5 group-focus:translate-x-0 group-focus:w-12')
-                        .absolute.bg-white.w-5.transform.transition-all.duration-500.rotate-0.delay-300(class='h-[2px] group-focus:rotate-45')
-                        .absolute.bg-white.w-5.transform.transition-all.duration-500.-rotate-0.delay-300(class='h-[2px] group-focus:-rotate-45')
+        input(type="checkbox" role="button" aria-label="Display the menu" class="menu-button")
 
     div(class="menu hidden container mx-auto md:flex md:justify-between items-center p-2 gap-3")
             nav(class="menu-nav grid text-center items-center md:flex pointer-events-none md:pointer-events-auto")

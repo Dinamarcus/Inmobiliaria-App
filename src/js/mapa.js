@@ -30,8 +30,6 @@
       .reverse()
       .latlng(posicion, 13)
       .run(function (error, resultado) {
-        console.log(resultado);
-
         marker.bindPopup(resultado.address.LongLabel).openPopup();
 
         // Llenar los campos

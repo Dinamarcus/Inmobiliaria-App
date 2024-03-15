@@ -5,16 +5,18 @@ html(lang="es")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Bienes Raices | #{pagina}
         link(rel="stylesheet", href="/css/app.css")
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
         block styles
-    body.min-h-screen.bg-gray-50
+    body(class="flex min-h-screen flex-col")
         if authenticated
             include includes/header-admin
         else 
             include includes/header-app
 
-        main(class="mx-auto container mt-10 px-2")
+        main(class="flex-1")
             block content
 
-    include ./../footer
+        include ./../footer
 
-        block scripts
+    script(src="https://kit.fontawesome.com/8fe8329aac.js" crossorigin="anonymous")
+    block scripts

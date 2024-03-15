@@ -10,6 +10,7 @@ export default {
     mapaInicio: "./src/js/mapaInicio.js",
     cambiarEstado: "./src/js/cambiarEstado.js",
     hamburMenu: "./src/js/hamburMenu.js",
+    swiper: "./src/js/swiper.js",
   },
   output: {
     filename: "[name].js",
