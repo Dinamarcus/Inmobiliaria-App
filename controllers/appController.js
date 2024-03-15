@@ -169,19 +169,67 @@ const editarPerfil = async (req, res) => {
 const guardarCambios = async (req, res) => {
   let resultado = validationResult(req);
 
-  if (!resultado.isEmpty()) {
-    const [categorias, precios] = await Promise.all([
-      Categoria.findAll(),
-      Precio.findAll(),
-    ]);
+  const { passwordOld: oldPass, passwordNew: newPass } = req.body;
+  const passHashed = await Usuario.findByPk(req.usuario.id, {
+    attributes: ["password"],
+    raw: true,
+  });
+  const areSame = await bcrypt.compare(oldPass, passHashed.password);
 
-    return res.render("propiedades/editar", {
-      pagina: "Editar Propiedad",
+  if (!areSame) {
+    resultado.errors.push({
+      value: oldPass,
+      msg: "La contraseña actual es incorrecta",
+      param: "passwordOld",
+      location: "body",
+    });
+  }
+
+  if (oldPass !== "" && newPass === "") {
+    resultado.errors.push({
+      value: "",
+      msg: "El campo de nueva contraseña no puede estar vacio",
+      param: "passwordNew",
+      location: "body",
+    });
+  }
+
+  if (oldPass === "" && newPass !== "") {
+    resultado.errors.push({
+      value: "",
+      msg: "El campo de contraseña actual no puede estar vacio",
+      param: "passwordOld",
+      location: "body",
+    });
+  }
+
+  if (oldPass !== "" && newPass !== "") {
+    if (oldPass.length < 6 || newPass.length < 6) {
+      resultado.errors.push({
+        value: oldPass,
+        msg: "La contraseña debe tener al menos 6 caracteres",
+        param: "passwordOld",
+        location: "body",
+      });
+    }
+
+    if (oldPass == newPass) {
+      resultado.errors.push({
+        value: newPass,
+        msg: "La contraseña nueva no puede ser igual a la anterior",
+        param: "passwordNew",
+        location: "body",
+      });
+    }
+  }
+
+  if (!resultado.isEmpty()) {
+    return res.render("propiedades/editar-perfil", {
+      pagina: "Editar Perfil",
       csrfToken: req.csrfToken(),
-      categorias,
-      precios,
       errores: resultado.array(),
       datos: req.body,
+      user: req.usuario,
       userId: hashBase64(req.usuario.id.toString()),
     });
   }
@@ -191,7 +239,7 @@ const guardarCambios = async (req, res) => {
   const idUsuario = buffer.toString("utf-8");
 
   let users = await Usuario.findAll({
-    attributes: ["id", "nombre", "email"],
+    attributes: ["id", "nombre", "email", "password"],
     raw: true,
   });
 
@@ -205,10 +253,15 @@ const guardarCambios = async (req, res) => {
 
   const { nombre, email } = req.body;
 
+  // Hashear el nuevo password
+  const salt = await bcrypt.genSalt(10); // rondas de hasheo
+  const password = await bcrypt.hash(newPass, salt);
+
   await Usuario.update(
     {
       nombre,
       email,
+      password,
     },
     {
       where: {

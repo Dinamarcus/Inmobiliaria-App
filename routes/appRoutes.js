@@ -28,6 +28,8 @@ Router.post("/buscador", identificarUsuario, buscador);
 // Editar perfil
 Router.get("/editar-perfil/:id", protegerRuta, editarPerfil);
 
+//Quiero poner la validacion de que si el campo passwordOld no esta vacio, entonces el campo password debe estar lleno y ademas deben ser iguales y tener longitud minima de 6 caracteres.
+
 Router.post(
   "/editar-perfil/:id",
   body("nombre").notEmpty().withMessage("El nombre no puede ir vacio"),

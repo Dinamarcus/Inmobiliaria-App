@@ -33,7 +33,9 @@ const emailRegistro = async (datos) => {
             <h1 style="color: #333333;">Hola ${nombre}!</h1>
             <p style="color: #777777;">Sólo falta un paso para confirmar tu cuenta. Presiona el siguiente enlace:</p>
             <a href="${
-              process.env.BACKEND_URL
+              process.env.PORT === 8080 || process.env.PORT === "8080"
+                ? "https://inmobiliaria-app-dev-zqsr.2.us-1.fl0.io"
+                : `http://localhost:${process.env.PORT}`
             }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Confirmar cuenta</a>
             <p style="color: #777777;">Si no realizaste esta petición, ignora este mensaje</p>
         </div>
@@ -78,8 +80,10 @@ const emailOlvide = async (datos) => {
               <h1 style="color: #333333;">Hola ${nombre}!</h1>
               <p style="color: #777777;">Sólo falta un paso para cambiar tu password. Presiona el siguiente enlace:</p>
               <a href="${
-                process.env.BACKEND_URL
-              }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Confirmar cuenta</a>
+                process.env.PORT === 8080 || process.env.PORT === "8080"
+                  ? "https://inmobiliaria-app-dev-zqsr.2.us-1.fl0.io"
+                  : `http://localhost:${process.env.PORT}`
+              }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Cambiar Password</a>
               <p style="color: #777777;">Si no realizaste esta petición, ignora este mensaje</p>
           </div>
 
