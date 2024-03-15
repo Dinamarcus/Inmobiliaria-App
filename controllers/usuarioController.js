@@ -181,7 +181,7 @@ const nuevoPassword = async (req, res) => {
 
   // Verificar que no haya errores
   if (!errors.isEmpty()) {
-    return res.render("auth/olvide", {
+    return res.render("auth/reset-password", {
       pagina: "Reestablece tu Password",
       errores: errors.array(),
       csrfToken: req.csrfToken(),
