@@ -203,7 +203,7 @@ const nuevoPassword = async (req, res) => {
 
   await usuario.save();
 
-  res.render("auth/confirmar", {
+  res.render("auth/confirmar-cuenta", {
     pagina: "Password Actualizado",
     mensaje: "Tu password se ha actualizado correctamente",
   });
