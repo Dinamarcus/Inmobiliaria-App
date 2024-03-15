@@ -11,6 +11,7 @@ export default {
     cambiarEstado: "./src/js/cambiarEstado.js",
     hamburMenu: "./src/js/hamburMenu.js",
     swiper: "./src/js/swiper.js",
+    disableInput: "./src/js/disableInput.js",
   },
   output: {
     filename: "[name].js",
