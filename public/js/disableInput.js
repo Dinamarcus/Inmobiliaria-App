@@ -16,7 +16,7 @@
   \********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n(function () {\r\n  const button = document.getElementById(\"guardarCambios\");\r\n\r\n  button.addEventListener(\"click\", function (e) {\r\n    console.log(\"click\");\r\n\r\n    button.setAttribute(\"disabled\", \"true\");\r\n    button.style.filter = \"grayscale(100%)\";\r\n  });\r\n})();\r\n\n\n//# sourceURL=webpack://bienesraices_mvc/./src/js/disableInput.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n(function () {\r\n  const button = document.getElementById(\"guardarCambios\");\r\n\r\n  button.addEventListener(\"click\", function (e) {\r\n    e.preventDefault();\r\n\r\n    button.setAttribute(\"disabled\", \"true\");\r\n    button.style.filter = \"grayscale(100%)\";\r\n  });\r\n})();\r\n\n\n//# sourceURL=webpack://bienesraices_mvc/./src/js/disableInput.js?");
 
 /***/ })
 
