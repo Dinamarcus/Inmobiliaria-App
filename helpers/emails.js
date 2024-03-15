@@ -83,7 +83,7 @@ const emailOlvide = async (datos) => {
                 process.env.PORT === 8080 || process.env.PORT === "8080"
                   ? "https://inmobiliaria-app-dev-zqsr.2.us-1.fl0.io"
                   : `http://localhost:${process.env.PORT}`
-              }/auth/confirmar/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Cambiar Password</a>
+              }/auth/olvide/${token}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; text-decoration: none;">Cambiar Password</a>
               <p style="color: #777777;">Si no realizaste esta petición, ignora este mensaje</p>
           </div>
 
