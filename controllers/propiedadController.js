@@ -128,6 +128,10 @@ const guardar = async (req, res) => {
     categoria: categoriaId,
   } = req.body;
 
+  habitaciones = habitaciones == "" ? 0 : habitaciones;
+  estacionamiento = estacionamiento == "" ? 0 : estacionamiento;
+  wc = wc == "" ? 0 : wc;
+
   const { id: usuarioId } = req.usuario;
 
   try {

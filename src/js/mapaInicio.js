@@ -56,7 +56,7 @@
         autoPan: true,
       }).addTo(mapa).bindPopup(`
         <h3 class="text-center text-xl font-extrabold uppercase my-2">${propiedad?.titulo}</h3>
-        <img src="/img/${propiedad?.imagen}" alt="Imagen de la propiedad">
+        <img src="${propiedad?.imagen}" alt="Imagen de la propiedad">
         <p class="text-gray-600 font-bold">Categoria: ${propiedad.categoria.nombre}</p>
         <p class="text-gray-600 font-bold">${propiedad?.descripcion}</p>
         <a href="/propiedad/${propiedad.id}" class="bg-indigo-600 block p-2 text-center font-bold uppercase rounded hover:bg-indigo-700 transition-colors duration-300 ease">Ver Propiedad</a>
